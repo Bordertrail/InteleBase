@@ -1,0 +1,338 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1777082144483,
+  "projectRoot": "/Users/chasingbird/IdeaProjects/InteleBase",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {},
+  "hotPaths": [
+    {
+      "path": "crates/kb-core/src/models/user.rs",
+      "accessCount": 10,
+      "lastAccessed": 1777098153091,
+      "type": "file"
+    },
+    {
+      "path": "DEVELOPMENT_PLAN.md",
+      "accessCount": 9,
+      "lastAccessed": 1777112885803,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/models/knowledge_base.rs",
+      "accessCount": 8,
+      "lastAccessed": 1777098153688,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-server/Cargo.toml",
+      "accessCount": 8,
+      "lastAccessed": 1777107082942,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/Cargo.toml",
+      "accessCount": 7,
+      "lastAccessed": 1777097155354,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-auth/Cargo.toml",
+      "accessCount": 7,
+      "lastAccessed": 1777097329703,
+      "type": "file"
+    },
+    {
+      "path": "Cargo.toml",
+      "accessCount": 7,
+      "lastAccessed": 1777097444313,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-db/src/lib.rs",
+      "accessCount": 6,
+      "lastAccessed": 1777090887222,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/models/permission.rs",
+      "accessCount": 6,
+      "lastAccessed": 1777098161983,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/traits/search_engine.rs",
+      "accessCount": 6,
+      "lastAccessed": 1777099414453,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-db/Cargo.toml",
+      "accessCount": 5,
+      "lastAccessed": 1777097344234,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/traits/llm_client.rs",
+      "accessCount": 4,
+      "lastAccessed": 1777090463072,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-worker/src/main.rs",
+      "accessCount": 4,
+      "lastAccessed": 1777090651568,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/error.rs",
+      "accessCount": 4,
+      "lastAccessed": 1777090813181,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/lib.rs",
+      "accessCount": 4,
+      "lastAccessed": 1777090838709,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/config.rs",
+      "accessCount": 4,
+      "lastAccessed": 1777096872766,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/models/chunk.rs",
+      "accessCount": 4,
+      "lastAccessed": 1777098154238,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/models/document.rs",
+      "accessCount": 4,
+      "lastAccessed": 1777098161309,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/models/role.rs",
+      "accessCount": 4,
+      "lastAccessed": 1777098162435,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/models/audit_log.rs",
+      "accessCount": 4,
+      "lastAccessed": 1777098163028,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/traits/vector_store.rs",
+      "accessCount": 4,
+      "lastAccessed": 1777099417214,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/traits/storage.rs",
+      "accessCount": 3,
+      "lastAccessed": 1777088584161,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-search/Cargo.toml",
+      "accessCount": 3,
+      "lastAccessed": 1777090453075,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/traits/mod.rs",
+      "accessCount": 3,
+      "lastAccessed": 1777090484564,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-llm/src/lib.rs",
+      "accessCount": 3,
+      "lastAccessed": 1777090484874,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-search/src/lib.rs",
+      "accessCount": 3,
+      "lastAccessed": 1777090485775,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-auth/src/lib.rs",
+      "accessCount": 3,
+      "lastAccessed": 1777090755633,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-server/src/lib.rs",
+      "accessCount": 3,
+      "lastAccessed": 1777097203924,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-core/src/models/mod.rs",
+      "accessCount": 3,
+      "lastAccessed": 1777098160769,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-vector/src/lib.rs",
+      "accessCount": 2,
+      "lastAccessed": 1777089284108,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-storage/src/lib.rs",
+      "accessCount": 2,
+      "lastAccessed": 1777089285647,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-document/src/lib.rs",
+      "accessCount": 2,
+      "lastAccessed": 1777089287007,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-cache/src/lib.rs",
+      "accessCount": 2,
+      "lastAccessed": 1777089289424,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-queue/src/lib.rs",
+      "accessCount": 2,
+      "lastAccessed": 1777089290856,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-retrieval/src/lib.rs",
+      "accessCount": 2,
+      "lastAccessed": 1777089293763,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-llm/Cargo.toml",
+      "accessCount": 2,
+      "lastAccessed": 1777090435747,
+      "type": "file"
+    },
+    {
+      "path": "migrations/0001_create_users.sql",
+      "accessCount": 2,
+      "lastAccessed": 1777098183191,
+      "type": "file"
+    },
+    {
+      "path": "migrations/0002_create_roles.sql",
+      "accessCount": 2,
+      "lastAccessed": 1777098183305,
+      "type": "file"
+    },
+    {
+      "path": "migrations/0003_create_knowledge_bases.sql",
+      "accessCount": 2,
+      "lastAccessed": 1777098183652,
+      "type": "file"
+    },
+    {
+      "path": "migrations/0004_create_kb_permissions.sql",
+      "accessCount": 2,
+      "lastAccessed": 1777098184283,
+      "type": "file"
+    },
+    {
+      "path": "migrations/0005_create_documents.sql",
+      "accessCount": 2,
+      "lastAccessed": 1777098184819,
+      "type": "file"
+    },
+    {
+      "path": "migrations/0006_create_chunks.sql",
+      "accessCount": 2,
+      "lastAccessed": 1777098185371,
+      "type": "file"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "accessCount": 2,
+      "lastAccessed": 1777103309976,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-vector/Cargo.toml",
+      "accessCount": 1,
+      "lastAccessed": 1777084367213,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-storage/Cargo.toml",
+      "accessCount": 1,
+      "lastAccessed": 1777084367515,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-document/Cargo.toml",
+      "accessCount": 1,
+      "lastAccessed": 1777084367815,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-cache/Cargo.toml",
+      "accessCount": 1,
+      "lastAccessed": 1777084368112,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-queue/Cargo.toml",
+      "accessCount": 1,
+      "lastAccessed": 1777084368405,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-retrieval/Cargo.toml",
+      "accessCount": 1,
+      "lastAccessed": 1777084369013,
+      "type": "file"
+    },
+    {
+      "path": "crates/kb-worker/Cargo.toml",
+      "accessCount": 1,
+      "lastAccessed": 1777084369611,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
