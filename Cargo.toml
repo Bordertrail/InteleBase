@@ -1,0 +1,106 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/kb-core",
+    "crates/kb-db",
+    "crates/kb-auth",
+    "crates/kb-search",
+    "crates/kb-vector",
+    "crates/kb-storage",
+    "crates/kb-document",
+    "crates/kb-cache",
+    "crates/kb-queue",
+    "crates/kb-llm",
+    "crates/kb-retrieval",
+    "crates/kb-server",
+    "crates/kb-worker",
+]
+
+[workspace.package]
+edition = "2024"
+rust-version = "1.85"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/example/knowledge-base"
+
+[workspace.dependencies]
+# Web Framework
+axum = { version = "0.8", features = ["macros", "multipart"] }
+axum-extra = { version = "0.10", features = ["typed-header"] }
+tower = "0.5"
+tower-http = { version = "0.6", features = ["cors", "trace", "compression-gzip", "limit", "request-id"] }
+
+# Async Runtime
+tokio = { version = "1", features = ["full"] }
+
+# Database
+sqlx = { version = "0.8", features = ["runtime-tokio", "postgres", "uuid", "chrono", "json", "migrate"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# UUID & DateTime
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Authentication
+jsonwebtoken = "9"
+argon2 = { version = "0.5", features = ["std"] }
+
+# Configuration
+figment = { version = "0.10", features = ["env", "toml"] }
+
+# Error Handling
+thiserror = "2"
+anyhow = "1"
+
+# Logging & Tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# HTTP Client
+reqwest = { version = "0.12", features = ["json", "stream", "rustls-tls"] }
+
+# Search & Vector
+tantivy = "0.22"
+qdrant-client = { version = "1.13", default-features = false }
+
+# Storage
+object_store = { version = "0.11", features = ["aws"] }
+
+# Cache
+moka = { version = "0.12", features = ["future"] }
+redis = { version = "0.27", features = ["tokio-comp", "connection-manager", "streams"] }
+
+# Document Processing
+kreuzberg = "4"
+text-splitter = "0.18"
+
+# Metrics
+metrics = "0.24"
+metrics-exporter-prometheus = "0.16"
+
+# Validation
+validator = { version = "0.18", features = ["derive"] }
+
+# OpenAPI
+utoipa = { version = "5", features = ["uuid", "chrono"] }
+utoipa-swagger-ui = { version = "9", features = ["axum"] }
+
+# Async trait
+async-trait = "0.1"
+
+# Internal crates (path dependencies)
+kb-core = { path = "crates/kb-core" }
+kb-db = { path = "crates/kb-db" }
+kb-auth = { path = "crates/kb-auth" }
+kb-search = { path = "crates/kb-search" }
+kb-vector = { path = "crates/kb-vector" }
+kb-storage = { path = "crates/kb-storage" }
+kb-document = { path = "crates/kb-document" }
+kb-cache = { path = "crates/kb-cache" }
+kb-queue = { path = "crates/kb-queue" }
+kb-llm = { path = "crates/kb-llm" }
+kb-retrieval = { path = "crates/kb-retrieval" }
+kb-server = { path = "crates/kb-server" }
+kb-worker = { path = "crates/kb-worker" }

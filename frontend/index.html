@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>InteleBase - 企业知识库</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: #f5f6f8;
+  }
+
+  /* Login Page */
+  .login-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login-card {
+    width: 360px;
+    padding: 32px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+  }
+
+  .title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .input-group {
+    margin-bottom: 16px;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.2s;
+  }
+
+  input:focus, select:focus {
+    border-color: #111;
+    outline: none;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .btn:hover {
+    background: #333;
+  }
+
+  .btn:disabled {
+    background: #999;
+    cursor: not-allowed;
+  }
+
+  .footer {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+  }
+
+  .footer-link {
+    color: #111;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .error-msg {
+    color: #e53935;
+    font-size: 13px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* Dashboard Page */
+  .dashboard-container {
+    min-height: 100vh;
+  }
+
+  .nav {
+    background: #fff;
+    padding: 16px 24px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .nav-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #666;
+  }
+
+  .nav-btn {
+    padding: 8px 16px;
+    background: #f5f6f8;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .nav-btn:hover {
+    background: #e5e7eb;
+  }
+
+  .main-content {
+    max-width: 1200px;
+    margin: 24px auto;
+    padding: 0 24px;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .page-title {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .create-btn {
+    padding: 10px 20px;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .create-btn:hover {
+    background: #333;
+  }
+
+  .kb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .kb-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    transition: 0.2s;
+  }
+
+  .kb-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .kb-card:hover::before {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  }
+
+  .kb-name {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 8px 12px;
+    background: #f3f0ff;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+
+  .kb-desc {
+    font-size: 14px;
+    color: #666;
+    padding: 8px 12px;
+    background: #f8f6fc;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+
+  .kb-date {
+    font-size: 12px;
+    color: #888;
+    display: block;
+    white-space: nowrap;
+    padding: 6px 12px;
+    background: #faf9fc;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+
+  .kb-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  .kb-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .kb-btn-view {
+    background: #111;
+    color: #fff;
+  }
+
+  .kb-btn-delete {
+    background: #fee2e2;
+    color: #dc2626;
+  }
+
+  .kb-btn:hover {
+    opacity: 0.8;
+  }
+
+  .loading {
+    text-align: center;
+    padding: 40px;
+    color: #888;
+    font-size: 14px;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .page-btn {
+    padding: 8px 16px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .page-btn:disabled {
+    background: #f5f6f8;
+    cursor: not-allowed;
+  }
+
+  .page-num {
+    padding: 8px 16px;
+    background: #fff;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  /* KB Detail Page */
+  .kb-header {
+    margin-bottom: 24px;
+  }
+
+  .kb-detail-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .kb-detail-desc {
+    font-size: 14px;
+    color: #666;
+  }
+
+  .section-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .member-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .member-table th {
+    padding: 12px;
+    text-align: left;
+    font-size: 13px;
+    color: #888;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .member-table td {
+    padding: 12px;
+    font-size: 14px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .member-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .remove-btn {
+    padding: 6px 12px;
+    background: #fee2e2;
+    color: #dc2626;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .no-data {
+    text-align: center;
+    padding: 24px;
+    color: #888;
+    font-size: 14px;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay.hidden {
+    display: none;
+  }
+
+  .modal-card {
+    width: 360px;
+    padding: 32px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .modal-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .modal-close {
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+  }
+
+  .modal-close:hover {
+    color: #333;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Login Page -->
+<div id="login-page" class="login-container">
+  <div class="login-card">
+    <div class="title" id="login-title">登录</div>
+    <div id="error-msg" class="error-msg hidden"></div>
+
+    <form id="auth-form">
+      <div id="register-fields" class="hidden">
+        <div class="input-group">
+          <input type="text" id="username" placeholder="用户名" />
+        </div>
+        <div class="input-group">
+          <input type="text" id="full_name" placeholder="姓名（可选）" />
+        </div>
+      </div>
+
+      <div class="input-group">
+        <input type="email" id="email" placeholder="邮箱" required />
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="password" placeholder="密码（至少8位）" required />
+      </div>
+
+      <button type="submit" class="btn" id="submit-btn">登录</button>
+    </form>
+
+    <div class="footer">
+      <span id="toggle-mode" class="footer-link">没有账号？注册</span>
+      <br/><br/>
+      © 2026 InteleBase
+    </div>
+  </div>
+</div>
+
+<!-- Dashboard Page -->
+<div id="dashboard-page" class="dashboard-container hidden">
+  <nav class="nav">
+    <div class="nav-title">InteleBase</div>
+    <div class="nav-user">
+      <span id="user-name"></span>
+      <button id="logout-btn" class="nav-btn">退出</button>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">知识库</h1>
+      <button id="create-kb-btn" class="create-btn">创建知识库</button>
+    </div>
+
+    <div id="kb-list" class="kb-grid"></div>
+    <div id="loading" class="loading">加载中...</div>
+    <div id="pagination" class="pagination"></div>
+  </main>
+</div>
+
+<!-- Create KB Modal -->
+<div id="create-modal" class="modal-overlay hidden">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="modal-title">创建知识库</div>
+      <button id="close-modal" class="modal-close">×</button>
+    </div>
+
+    <form id="create-kb-form">
+      <div class="input-group">
+        <input type="text" id="kb-name" placeholder="知识库名称" required />
+      </div>
+      <div class="input-group">
+        <input type="text" id="kb-desc" placeholder="描述（可选）" />
+      </div>
+      <button type="submit" class="btn">创建</button>
+    </form>
+  </div>
+</div>
+
+<!-- KB Detail Page -->
+<div id="kb-detail-page" class="dashboard-container hidden">
+  <nav class="nav">
+    <div class="nav-title">InteleBase</div>
+    <div class="nav-user">
+      <button id="back-to-list" class="nav-btn">返回列表</button>
+      <span id="user-name-detail"></span>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="kb-header">
+      <h1 class="kb-detail-title" id="kb-title"></h1>
+      <p class="kb-detail-desc" id="kb-description"></p>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title">成员管理</div>
+        <button id="add-member-btn" class="create-btn">添加成员</button>
+      </div>
+
+      <table class="member-table">
+        <thead>
+          <tr>
+            <th>用户名</th>
+            <th>邮箱</th>
+            <th>角色</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="members-list"></tbody>
+      </table>
+      <div id="no-members" class="no-data hidden">暂无成员</div>
+    </div>
+  </main>
+</div>
+
+<!-- Add Member Modal -->
+<div id="add-member-modal" class="modal-overlay hidden">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="modal-title">添加成员</div>
+      <button id="close-member-modal" class="modal-close">×</button>
+    </div>
+
+    <form id="add-member-form">
+      <div class="input-group">
+        <input type="number" id="member-user-id" placeholder="用户ID" required />
+      </div>
+      <div class="input-group">
+        <select id="member-role">
+          <option value="viewer">查看者</option>
+          <option value="editor">编辑者</option>
+          <option value="admin">管理员</option>
+        </select>
+      </div>
+      <button type="submit" class="btn">添加</button>
+    </form>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

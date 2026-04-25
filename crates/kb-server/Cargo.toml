@@ -1,0 +1,43 @@
+[package]
+name = "kb-server"
+version = "0.1.0"
+edition.workspace = true
+
+[[bin]]
+name = "kb-server"
+path = "src/main.rs"
+
+[dependencies]
+kb-core = { workspace = true }
+kb-db = { workspace = true }
+kb-auth = { workspace = true }
+kb-search = { workspace = true }
+kb-vector = { workspace = true }
+kb-storage = { workspace = true }
+kb-document = { workspace = true }
+kb-cache = { workspace = true }
+kb-queue = { workspace = true }
+kb-llm = { workspace = true }
+kb-retrieval = { workspace = true }
+sqlx = { workspace = true }
+axum = { workspace = true }
+axum-extra = { workspace = true }
+utoipa = { workspace = true }
+utoipa-swagger-ui = { workspace = true }
+tower = { workspace = true }
+tower-http = { workspace = true, features = ["fs"] }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+validator = { workspace = true }
+metrics = { workspace = true }
+metrics-exporter-prometheus = { workspace = true }
+
+[dev-dependencies]
+reqwest = { workspace = true }

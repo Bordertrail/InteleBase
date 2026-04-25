@@ -1,0 +1,15 @@
+[package]
+name = "kb-document"
+version = "0.1.0"
+edition.workspace = true
+
+[dependencies]
+kb-core = { workspace = true }
+kb-storage = { workspace = true }
+kreuzberg = { workspace = true }
+text-splitter = { workspace = true }
+serde = { workspace = true }
+uuid = { workspace = true }
+thiserror = { workspace = true }
+async-trait = { workspace = true }
+tracing = { workspace = true }

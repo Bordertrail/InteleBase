@@ -1,0 +1,13 @@
+[package]
+name = "kb-storage"
+version = "0.1.0"
+edition.workspace = true
+
+[dependencies]
+kb-core = { workspace = true }
+object_store = { workspace = true }
+serde = { workspace = true }
+uuid = { workspace = true }
+thiserror = { workspace = true }
+async-trait = { workspace = true }
+tracing = { workspace = true }
