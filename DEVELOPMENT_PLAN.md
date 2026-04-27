@@ -2,7 +2,7 @@
 
 > 企业级知识库系统 - Rust + Axum 全栈实现
 >
-> 最后更新: 2026-04-25
+> 最后更新: 2026-04-27
 
 ---
 
@@ -14,7 +14,7 @@
 | 开发语言 | Rust (edition 2024) |
 | 后端框架 | Axum 0.8 |
 | 数据库 | PostgreSQL 16 |
-| 前端框架 | Vanilla HTML/JS + Tailwind CSS |
+| 前端框架 | Leptos 0.7 (SSR+Hydration) |
 | 许可证 | MIT or Apache 2.0 |
 
 ---
@@ -27,9 +27,9 @@
 | Phase 2 - 文档管道 | 8 | 0 | 0% |
 | Phase 3 - 搜索系统 | 9 | 0 | 0% |
 | Phase 4 - RAG问答 | 8 | 0 | 0% |
-| Phase 5 - 前端UI | 10 | 4 | **40%** |
+| Phase 5 - 前端UI | 11 | 6 | **55%** |
 | Phase 6 - 企业特性 | 12 | 0 | 0% |
-| **总计** | **56** | **13** | **23%** |
+| **总计** | **57** | **15** | **26%** |
 
 ---
 
@@ -270,46 +270,55 @@
 
 **交付物**: 登录 → KB管理 → 文档上传 → 搜索 → RAG对话 → 管理后台
 
-**技术方案**: Vanilla HTML/JavaScript + Tailwind CSS (从Leptos改为简单方案)
+**技术方案**: Leptos 0.7 (SSR+Hydration) - Rust全栈前端
 
 ### 5.1 项目初始化
 
 | 任务 | 状态 | 进度 | 备注 |
 |-----|------|------|------|
-| 前端项目结构 | ✅ 已完成 | 100% | frontend/index.html + app.js |
-| Tailwind CSS集成 | ✅ 已完成 | 100% | CDN引入 |
-| 静态文件服务 | ✅ 已完成 | 100% | tower-http ServeDir |
+| kb-web crate 创建 | ✅ 已完成 | 100% | Cargo.toml + lib.rs |
+| Leptos 依赖配置 | ✅ 已完成 | 100% | leptos, leptos_router, leptos_axum |
+| SSR+Hydration feature | ✅ 已完成 | 100% | hydrate (client), ssr (server) |
+| kb-server leptos_axum 集成 | ✅ 已完成 | 100% | LeptosRoutes + generate_route_list |
 
-### 5.2 认证页面
+### 5.2 状态管理
 
-| 页面 | 功能 | 状态 | 进度 | 备注 |
+| 模块 | 功能 | 状态 | 进度 | 备注 |
 |-----|------|------|------|------|
-| LoginPage | 登录表单 | ✅ 已完成 | 100% | email + password, 极简卡片设计 |
-| RegisterPage | 注册表单 | ✅ 已完成 | 100% | username + email + password + fullname |
-| Token验证 | 自动验证 | ✅ 已完成 | 100% | 初始化时验证token有效性 |
-| Token过期处理 | 自动跳转 | ✅ 已完成 | 100% | 401时清缓存跳登录页 |
+| AuthState | 认证状态 | ✅ 已完成 | 100% | token + user RwSignal |
+| KbState | KB状态 | ✅ 已完成 | 100% | list + current_kb + members |
+| provide_context | 全局注入 | ✅ 已完成 | 100% | App组件注入状态 |
 
-### 5.3 KB管理页面
+### 5.3 API 客户端
 
-| 页面 | 功能 | 状态 | 进度 | 备注 |
+| 模块 | 功能 | 状态 | 进度 | 备注 |
 |-----|------|------|------|------|
-| KbListPage | KB列表 | ✅ 已完成 | 100% | 卡片列表 + 渐变边框 + 分页 |
-| KbCreateModal | 创建KB | ✅ 已完成 | 100% | name + description 弹窗 |
-| KbDetailPage | KB详情 | ✅ 已完成 | 100% | 标题 + 描述 + 成员管理 |
-| MembersList | 成员列表 | ✅ 已完成 | 100% | 表格显示成员信息 |
-| AddMemberModal | 添加成员 | ✅ 已完成 | 100% | user_id + role 选择 |
-| RemoveMember | 移除成员 | ✅ 已完成 | 100% | 确认后删除 |
+| api/auth.rs | 登录/注册 | ✅ 已完成 | 100% | login, register (reqwest) |
+| api/kb.rs | KB CRUD | ✅ 已完成 | 100% | list_kbs, get_kb, create_kb, delete_kb |
+| api/kb.rs | 成员管理 | ✅ 已完成 | 100% | list_members, add_member, remove_member |
 
-### 5.4 样式设计
+### 5.4 UI 组件 (WIP)
+
+| 组件 | 功能 | 状态 | 进度 | 备注 |
+|-----|------|------|------|------|
+| LoginPage | 登录/注册表单 | 🔄 WIP | 80% | 双模式切换 + 表单验证 |
+| DashboardPage | KB列表 | 🔄 WIP | 80% | 卡片网格 + 分页 |
+| KbDetailPage | KB详情 | 🔄 WIP | 80% | 成员表格管理 |
+| Nav | 导航栏 | ✅ 已完成 | 100% | 用户名 + 退出按钮 |
+| CreateKbModal | 创建KB弹窗 | 🔄 WIP | 80% | name + description |
+| AddMemberModal | 添加成员弹窗 | 🔄 WIP | 80% | user_id + role选择 |
+
+> **注**: Leptos 0.7 API变化导致编译错误待修复，当前vanilla JS前端仍可用
+
+### 5.5 样式设计
 
 | 功能 | 状态 | 进度 | 备注 |
 |-----|------|------|------|
-| 极简风格设计 | ✅ 已完成 | 100% | 参考登录卡片模板 |
-| 渐变边框卡片 | ✅ 已完成 | 100% | 紫-蓝渐变 + 圆角 |
-| 分层底色区分 | ✅ 已完成 | 100% | 标题/描述/时间不同底色 |
-| 时间格式化 | ✅ 已完成 | 100% | yyyy-mm-dd HH:mm:ss |
+| 内嵌CSS样式 | ✅ 已完成 | 100% | 组件内style标签 |
+| 极简风格 | ✅ 已完成 | 100% | 白底卡片 + 圆角边框 |
+| 渐变边框效果 | 📋 计划中 | 0% | kb-card hover效果 |
 
-### 5.5 文档页面
+### 5.6 文档页面
 
 | 页面 | 功能 | 状态 | 进度 | 备注 |
 |-----|------|------|------|------|
@@ -317,7 +326,7 @@
 | DocListPage | 文档列表 | ⬜ 待开始 | 0% | 状态过滤 + 分页 |
 | DocDetailPage | 文档详情 | ⬜ 待开始 | 0% | 元数据 + chunks预览 |
 
-### 5.6 搜索页面
+### 5.7 搜索页面
 
 | 组件 | 功能 | 状态 | 进度 | 备注 |
 |-----|------|------|------|------|
