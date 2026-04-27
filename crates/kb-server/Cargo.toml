@@ -19,6 +19,9 @@ kb-cache = { workspace = true }
 kb-queue = { workspace = true }
 kb-llm = { workspace = true }
 kb-retrieval = { workspace = true }
+kb-web = { workspace = true }
+leptos = { workspace = true }
+leptos_axum = { workspace = true }
 sqlx = { workspace = true }
 axum = { workspace = true }
 axum-extra = { workspace = true }

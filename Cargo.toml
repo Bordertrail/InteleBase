@@ -14,6 +14,7 @@ members = [
     "crates/kb-retrieval",
     "crates/kb-server",
     "crates/kb-worker",
+    "crates/kb-web",
 ]
 
 [workspace.package]
@@ -90,6 +91,12 @@ utoipa-swagger-ui = { version = "9", features = ["axum"] }
 # Async trait
 async-trait = "0.1"
 
+# Leptos frontend
+leptos = "0.7"
+leptos_router = "0.7"
+leptos_axum = "0.7"
+reactive_stores = "0.1"
+
 # Internal crates (path dependencies)
 kb-core = { path = "crates/kb-core" }
 kb-db = { path = "crates/kb-db" }
@@ -104,3 +111,4 @@ kb-llm = { path = "crates/kb-llm" }
 kb-retrieval = { path = "crates/kb-retrieval" }
 kb-server = { path = "crates/kb-server" }
 kb-worker = { path = "crates/kb-worker" }
+kb-web = { path = "crates/kb-web" }
